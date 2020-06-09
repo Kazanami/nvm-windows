@@ -1,0 +1,8 @@
+name: Go
+
+on:
+  push:
+     paths:
+      - '.github/workflows/go.yml'
+
+jobs:
