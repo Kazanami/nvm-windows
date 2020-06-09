@@ -32,5 +32,6 @@ jobs:
 
     - name: Running Test
       run: |
+        cd src/
         nvm.exe version
         nvm.exe install stable
