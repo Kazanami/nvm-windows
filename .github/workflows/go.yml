@@ -2,7 +2,35 @@ name: Go
 
 on:
   push:
-     paths:
-      - '.github/workflows/go.yml'
-
+   paths:
+    - '.github/workflows/go.yml'
 jobs:
+
+  build:
+    name: Build
+    runs-on: windows-latest
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.13
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Get dependencies
+      run: |
+           go get github.com/blang/semver
+           go get github.com/olekukonko/tablewriter
+           
+    - name: Build
+      run: |
+        cd src/
+        go build nvm.go
+
+    - name: Running Test
+      run: |
+        nvm.exe version
+        nvm.exe install stable
